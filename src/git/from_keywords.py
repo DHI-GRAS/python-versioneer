@@ -80,11 +80,9 @@ def git_versions_from_keywords(keywords, tag_prefix, verbose):
                     "full-revisionid": keywords["full"].strip(),
                     "dirty": False, "error": None,
                     "date": date}
-    # no suitable tags, so version is "0+unknown", but full hex is still there
+    # no suitable tags, fall back to unknwon + revision id
     if verbose:
         print("no suitable tags, using unknown + full revision id")
-    return {"version": "0+unknown",
+    return {"version": "unknown+%s" % keywords["full"].strip(),
             "full-revisionid": keywords["full"].strip(),
             "dirty": False, "error": "no suitable tags", "date": None}
-
-
